@@ -26,7 +26,6 @@ public class Trainee {
     private String office;
     @Email
     private String email;
-    @NotEmpty(message = "github can't be null")
     private String github;
     @NotEmpty(message = "zoomId can't be null")
     private String zoomId;
