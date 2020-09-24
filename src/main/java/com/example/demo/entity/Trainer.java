@@ -25,4 +25,11 @@ public class Trainer {
     @JsonIgnore
     @Builder.Default
     private boolean grouped = false;
+
+    @Column(name = "groups_id")
+    private Long groupsId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "groups_id", insertable = false, updatable = false)
+    private GroupEntity groups;
 }
