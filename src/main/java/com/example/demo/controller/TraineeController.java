@@ -1,13 +1,12 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Trainee;
-import com.example.demo.exception.TraineeNotFoundException;
+import com.example.demo.exception.TraineeOrTrainerNotFoundException;
 import com.example.demo.service.TraineeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -21,7 +20,7 @@ public class TraineeController {
     }
 
     @GetMapping("")
-    public List<Trainee> getUnGroupedTrainees(@RequestParam(value = "grouped",required = false) boolean grouped) {
+    public List<Trainee> getUnGroupedTrainees(@RequestParam(value = "grouped", required = false) boolean grouped) {
         return traineeService.getUnGroupedTrainees(grouped);
     }
 
@@ -33,7 +32,7 @@ public class TraineeController {
 
     @DeleteMapping("/{trainee_id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteTraineeById(@PathVariable Long trainee_id) throws TraineeNotFoundException {
+    public void deleteTraineeById(@PathVariable Long trainee_id) {
         traineeService.deleteTraineeById(trainee_id);
     }
 

@@ -1,12 +1,11 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Trainee;
-import com.example.demo.exception.TraineeNotFoundException;
+import com.example.demo.exception.TraineeOrTrainerNotFoundException;
 import com.example.demo.repository.TraineeRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TraineeService {
@@ -21,10 +20,9 @@ public class TraineeService {
         return trainee;
     }
 
-    public void deleteTraineeById(Long id) throws TraineeNotFoundException {
-        Optional<Trainee> result = traineeRepository.findById(id);
-        if(!result.isPresent()){
-            throw new TraineeNotFoundException("Trainee Not Found");
+    public void deleteTraineeById(Long id) {
+        if(!traineeRepository.findById(id).isPresent()){
+            throw new TraineeOrTrainerNotFoundException("Trainee Not Found");
         }
         traineeRepository.deleteById(id);
     }
